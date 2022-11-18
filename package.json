@@ -1,0 +1,22 @@
+{
+  "name": "authenticator-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matt867/authenticator-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matt867/authenticator-server/issues"
+  },
+  "homepage": "https://github.com/Matt867/authenticator-server#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
