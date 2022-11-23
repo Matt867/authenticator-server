@@ -13,30 +13,34 @@ function generateAccessToken(identifier, expiryTime) {
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
+
     const token = authHeader && authHeader.split(' ')[1]
 
     if (token == null) return res.sendStatus(401)
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
 
-      if (err) return res.status(403).send("Token invalid or expired")
+        if (err) return res.status(403).json({
+            "handle": null,
+            "authenticated": false
+        })
 
-      req.user = user
+        console.log(user.identifier)
+        req.user = user
 
-      next()
+        next()
     })
 }
 
 app.post('/api/generateToken', (req, res) => {
-
-    const token = generateAccessToken({ identifier: req.body.identifier}, '1800s')
+    const token = generateAccessToken({ identifier: req.body.identifier}, '3600s')
     res.json(token);
-
 })
 
+
 app.get('/api/authenticateToken', authenticateToken, (req, res) => {
-    console.log(req.user)
     res.json({
+        "handle": req.user.identifier,
         "authenticated" : true
     })
 })
